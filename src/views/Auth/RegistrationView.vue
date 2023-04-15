@@ -45,7 +45,7 @@ export default {
             <v-toolbar-title>Registration</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
-            <v-form v-model="valid" ref="form" validation>
+            <v-form v-model="valid" ref="form" lazy-validation>
               <v-text-field
                 prepend-icon="mdi-account"
                 name="email"
