@@ -32,10 +32,10 @@ export default {
           id: "4",
         },
         {
-          title: "Fifth",
-          desc: "Fifth Desc",
+          title: "Loshara",
+          desc: "Osman районе",
           promo: false,
-          src: "https://sun2.43222.userapi.com/impg/XaHn2WDZpufmHyeWMZi5ilR-qqIfrdl6nS86Ag/6SaOx8FrokI.jpg?size=221x89&quality=96&sign=ac9074db5b3496b3f18d92c16e1901cd&type=album",
+          src: "https://avatars.githubusercontent.com/u/95274766?v=4",
           id: "5",
         },
       ],
@@ -51,28 +51,37 @@ export default {
         <v-carousel>
           <v-carousel-item v-for="ad in ads" :key="ad.id" :src="ad.src" cover>
             <div class="ad-link">
-              <v-btn class="error" :to="'/ad/' + ad.id">{{ ad.title }}</v-btn>
-            </div></v-carousel-item
-          >
+              <v-btn class="error" :to="'/ad/' + ad.id">
+                {{ ad.title }}
+              </v-btn>
+            </div>
+          </v-carousel-item>
         </v-carousel>
       </v-col>
     </v-row>
   </v-container>
-  <v-container>
+  <v-container grid-list-lg>
     <v-row justify="center">
-      <v-col cols="12" xs="12">
+      <v-col cols="12" sm="6" md="4" xs="12" v-for="ad in ads" :key="ad.id">
         <v-card>
-          <v-img height="200px"></v-img>
+          <v-img :src="ad.src" height="200px"></v-img>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb0">Здесь будет заголовок</h3>
-              <div>Здесь будет описание</div>
+              <h3 class="headline mb0">{{ ad.title }}</h3>
+              <div>{{ ad.desc }}</div>
             </div>
           </v-card-title>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn text>Open</v-btn>
-            <v-btn raised color="primary">Buy</v-btn>
+            <v-btn
+              prepend-icon="mdi-vuetify"
+              variant="text"
+              :to="'/ad/' + ad.id"
+              >Open</v-btn
+            >
+            <v-btn append-icon="mdi-vuetify" raised color="primary">
+              Buy
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
