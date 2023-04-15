@@ -47,6 +47,7 @@ export default {
           <v-card-text>
             <v-form v-model="valid" ref="form" lazy-validation>
               <v-text-field
+                text-field
                 prepend-icon="mdi-account"
                 name="email"
                 label="Email"
