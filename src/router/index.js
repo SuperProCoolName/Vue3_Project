@@ -15,6 +15,7 @@ const routes = [
   },
   {
     path: "/ad/:id",
+    props: true,
     name: "ad",
     component: AdView,
   },
@@ -42,6 +43,12 @@ const routes = [
     path: "/orders",
     name: "orders",
     component: OrdersView,
+  },
+  {
+    path: "/ad/:id",
+    props: true,
+    name: "ad",
+    component: AdView,
   },
 ];
 

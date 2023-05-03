@@ -59,5 +59,10 @@ export default {
     myAds(state) {
       return state.ads;
     },
+    adById(state) {
+      return (id) => {
+        return state.ads.find((ad) => ad.id == id);
+      };
+    },
   },
 };
