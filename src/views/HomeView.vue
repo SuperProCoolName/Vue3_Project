@@ -22,7 +22,6 @@ export default {
               :src="ad.src"
               cover
             >
-              >
               <div class="ad-link">
                 <v-btn class="error" :to="'/ad/' + ad.id">
                   {{ ad.title }}
@@ -46,8 +45,15 @@ export default {
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="black" text :to="'/ad/' + ad.id"> Открыть </v-btn>
-              <v-btn raised color="primary"> Купить </v-btn>
+              <v-btn
+                prepend-icon="mdi-vuetify"
+                variant="text"
+                :to="'/ad/' + ad.id"
+                >Open</v-btn
+              >
+              <v-btn append-icon="mdi-vuetify" raised color="primary">
+                Buy
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

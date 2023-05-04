@@ -25,8 +25,18 @@ export default {
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn text class="warning">Edit</v-btn>
-            <v-btn class="success">Buy</v-btn>
+            <v-btn
+              prepend-icon="mdi-file-edit"
+              variant="outlined"
+              color="warning"
+              >Edit</v-btn
+            >
+            <v-btn
+              append-icon="mdi-cart-arrow-down"
+              variant="outlined"
+              color="success"
+              >Buy</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>

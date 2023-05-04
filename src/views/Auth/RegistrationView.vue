@@ -22,6 +22,11 @@ export default {
       ],
     };
   },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    },
+  },
   methods: {
     onSubmit() {
       if (this.$refs.form.validate()) {
@@ -76,7 +81,12 @@ export default {
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" @click="onSubmit" :disabled="!valid">
+            <v-btn
+              color="primary"
+              @click="onSubmit"
+              :loading="loading"
+              :disabled="!valid || loading"
+            >
               Create Account
             </v-btn>
           </v-card-actions>
