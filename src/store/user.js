@@ -1,4 +1,3 @@
-const fb = window.FB;
 class User {
   constructor(id, email, password) {
     this.id = id;
@@ -17,22 +16,27 @@ export default {
       state.user = payload;
     },
   },
-  actions: {
-    registerUser({ commit }, { email, password }) {
-      commit("clearError");
-      commit("setLoading", true);
-      fb.auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((response) => {
-          commit("setUser", new User(response.user.uid));
-          commit("setLoading", false);
-        })
-        .catch((error) => {
-          commit("setLoading", false);
-          commit("setError", error.message);
-          throw error;
-        });
-    },
+  async registerUser({ commit }, { email, password }) {
+    commit("clearError");
+    commit("setLoading", true);
+    //Здесь выполняется запрос на сервер
+    let isRequestOk = false;
+    let promise = new Promise(function (resolve) {
+      setTimeout(() => resolve("Done"), 3000);
+    });
+
+    if (isRequestOk) {
+      await promise.then(() => {
+        commit("setUser", new User(1, email, password));
+        commit("setLoading", false);
+      });
+    } else {
+      await promise.then(() => {
+        commit("setLoading", false);
+        commit("setError", "Ошибка регистрации");
+        throw "Упс... Ошибка регистрации";
+      });
+    }
   },
   getters: {
     user(state) {

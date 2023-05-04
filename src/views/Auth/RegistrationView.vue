@@ -8,17 +8,17 @@ export default {
       valid: false,
       emailRules: [
         (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        (v) => /.+@.+\..+/.test(v) || "Введите электронную почту",
       ],
       passwordRules: [
-        (v) => !!v || "Password is required",
+        (v) => !!v || "Name is required",
         (v) =>
           (v && v.length >= 6) ||
-          "Password must be more or equel than 6 characters",
+          "Пароль должен состять не менее, чем из 6 символов",
       ],
       confirmPasswordRules: [
         (v) => !!v || "Password is required",
-        (v) => v === this.password || "Password should match",
+        (v) => v === this.password || "Пароль должен совпадать",
       ],
     };
   },
@@ -34,7 +34,14 @@ export default {
           email: this.email,
           password: this.password,
         };
-        this.$store.dispatch("registerUser", user);
+        this.$store
+          .dispatch("registerUser", user)
+          .then(() => {
+            this.$router.push("/");
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
       }
     },
   },
