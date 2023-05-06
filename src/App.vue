@@ -16,6 +16,16 @@ export default {
       ],
     };
   },
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+  methods: {
+    closeError() {
+      this.$store.dispatch("clearError");
+    },
+  },
 };
 </script>
 
@@ -52,7 +62,12 @@ export default {
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
-      <router-view></router-view>
+      <v-snackbar v-model="error" multi-line :timeout="2000" color="primary">
+        {{ error }}
+        <template v-slot:actions>
+          <v-btn variant="text" @click="closeError"> Close </v-btn>
+        </template>
+      </v-snackbar>
     </v-main>
   </v-app>
 </template>
