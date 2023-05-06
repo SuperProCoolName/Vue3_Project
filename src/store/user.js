@@ -16,27 +16,51 @@ export default {
       state.user = payload;
     },
   },
-  async registerUser({ commit }, { email, password }) {
-    commit("clearError");
-    commit("setLoading", true);
-    //Здесь выполняется запрос на сервер
-    let isRequestOk = false;
-    let promise = new Promise(function (resolve) {
-      setTimeout(() => resolve("Done"), 3000);
-    });
 
-    if (isRequestOk) {
-      await promise.then(() => {
-        commit("setUser", new User(1, email, password));
-        commit("setLoading", false);
+  actions: {
+    async registerUser({ commit }, { email, password }) {
+      commit("clearError");
+      commit("setLoading", true);
+      //Здесь выполняется запрос на сервер
+      let isRequestOk = false;
+      let promise = new Promise(function (resolve) {
+        setTimeout(() => resolve("Done"), 3000);
       });
-    } else {
-      await promise.then(() => {
-        commit("setLoading", false);
-        commit("setError", "Ошибка регистрации");
-        throw "Упс... Ошибка регистрации";
+      if (isRequestOk) {
+        await promise.then(() => {
+          commit("setUser", new User(1, email, password));
+          commit("setLoading", false);
+        });
+      } else {
+        await promise.then(() => {
+          commit("setLoading", false);
+          commit("setError", "Ошибка регистрации");
+          throw "Упс... Ошибка регистрации";
+        });
+      }
+    },
+    async loginUser({ commit }, { email, password }) {
+      commit("clearError");
+      commit("setLoading", true);
+      //Здесь выполняется запрос на сервер
+      let isRequestOk = false;
+      let promise = new Promise(function (resolve) {
+        setTimeout(() => resolve("Done"), 3000);
       });
-    }
+
+      if (isRequestOk) {
+        await promise.then(() => {
+          commit("setUser", new User(1, email, password));
+          commit("setLoading", false);
+        });
+      } else {
+        await promise.then(() => {
+          commit("setLoading", false);
+          commit("setError", "Ошибка логина или пароля");
+          throw "Упс... Ошибка логина или пароля";
+        });
+      }
+    },
   },
   getters: {
     user(state) {
