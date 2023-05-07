@@ -61,6 +61,9 @@ export default {
         });
       }
     },
+    logoutUser({ commit }) {
+      commit("setUser", null);
+    },
   },
   getters: {
     user(state) {

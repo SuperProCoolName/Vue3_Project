@@ -39,6 +39,10 @@ export default {
     closeError() {
       this.$store.dispatch("clearError");
     },
+    onLogout() {
+      this.$store.dispatch("logoutUser");
+      this.$router.push("/");
+    },
   },
 };
 </script>
@@ -72,6 +76,10 @@ export default {
         <v-btn v-for="link in links" :key="link.title" :to="link.url">
           <v-icon start :icon="link.icon"></v-icon>
           {{ link.title }}
+        </v-btn>
+        <v-btn @click="onLogout" v-if="isUserLoggedIn">
+          <v-icon start icon="mdi-exit-to-app"></v-icon>
+          Logout
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
