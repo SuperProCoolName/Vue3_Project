@@ -17,6 +17,15 @@ export default {
           promo: this.promo,
           src: "https://cdn.vuetifyjs.com/images/cards/cooking.png",
         };
+        this.$store
+          .dispatch("createAd", ad)
+          .then(() => {
+            this.$router.push("/list");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
         console.log(ad);
       }
     },
