@@ -1,22 +1,29 @@
 <script>
-import EditAdModal from "../EditAdModal";
 export default {
+  props: ["ad"],
   data() {
     return {
       modal: false,
-      editedTitle: "",
-      editedDesc: "",
+      editedTitle: this.ad.title,
+      editedDesc: this.ad.desc,
     };
   },
-  props: ["id"],
-  computed: {
-    ad() {
-      const id = this.id;
-      return this.$store.getters.adById(id);
+  methods: {
+    onCancel() {
+      this.editedTitle = this.ad.title;
+      this.editedDesc = this.ad.desc;
+      this.modal = false;
     },
-  },
-  components: {
-    "modal-dialog": EditAdModal,
+    onSave() {
+      if (this.editedTitle !== "" && this.editedDesc !== "") {
+        this.$store.dispatch("updateAd", {
+          title: this.editedTitle,
+          desc: this.editedDesc,
+          id: this.ad.id,
+        });
+        this.modal = false;
+      }
+    },
   },
 };
 </script>
@@ -24,13 +31,13 @@ export default {
 <template>
   <v-dialog v-model="modal" width="400px">
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" color="warning">Edit</v-btn></template
+      <v-btn v-bind="props" color="warning"> Edit</v-btn></template
     >
     <v-card class="pa-3">
       <v-row justify="center">
         <v-col cols="12">
           <v-card-title>
-            <h1 class="text--primary">Edit</h1>
+            <h1 class="text--primary">Edit Ad</h1>
           </v-card-title>
         </v-col>
       </v-row>
@@ -60,8 +67,8 @@ export default {
         <v-col cols="12">
           <v-card-actions>
             <v-spacer></v-spacer>
-            <modal-dialog></modal-dialog>
-            <v-btn color="success">Save</v-btn>
+            <v-btn @click="onCancel">Cancel</v-btn>
+            <v-btn color="success" @click="onSave">Save</v-btn>
           </v-card-actions>
         </v-col>
       </v-row>

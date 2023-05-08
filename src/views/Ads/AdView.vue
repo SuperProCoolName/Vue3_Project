@@ -1,4 +1,5 @@
 <script>
+import EditAdModal from "./EditAdModal";
 export default {
   props: ["id"],
   computed: {
@@ -7,8 +8,8 @@ export default {
       return this.$store.getters.adById(id);
     },
   },
-  data() {
-    return {};
+  components: {
+    "modal-dialog": EditAdModal,
   },
 };
 </script>
@@ -20,23 +21,29 @@ export default {
         <v-card class="mt-5">
           <v-img height="300px" :src="ad.src"></v-img>
           <v-card-text>
+            <v-card-text>
+              <v-text-field
+                name="title"
+                label="Title"
+                type="text"
+                v-model="editedTitle"
+              >
+              </v-text-field>
+              <v-textarea
+                name="desc"
+                label="Description"
+                type="text"
+                v-model="editedDesc"
+                class="mb-3"
+              ></v-textarea>
+            </v-card-text>
             <h1 class="text--primary mb-3">{{ ad.title }}</h1>
             <p>{{ ad.desc }}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-              prepend-icon="mdi-file-edit"
-              variant="outlined"
-              color="warning"
-              >Edit</v-btn
-            >
-            <v-btn
-              append-icon="mdi-cart-arrow-down"
-              variant="outlined"
-              color="success"
-              >Buy</v-btn
-            >
+            <modal-dialog :ad="ad"></modal-dialog>
+            <v-btn class="success">Buy</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
