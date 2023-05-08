@@ -1,12 +1,19 @@
 <script>
+import EditAdModal from "../EditAdModal";
 export default {
-  data() {
-    return {
-      modal: false,
-    };
+  props: ["id"],
+  computed: {
+    ad() {
+      const id = this.id;
+      return this.$store.getters.adById(id);
+    },
+  },
+  components: {
+    "modal-dialog": EditAdModal,
   },
 };
 </script>
+
 <template>
   <v-dialog v-model="modal" width="400px">
     <template v-slot:activator="{ props }">
@@ -31,7 +38,7 @@ export default {
         <v-col cols="12">
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn>Cancel</v-btn>
+            <modal-dialog></modal-dialog>
             <v-btn color="success">Save</v-btn>
           </v-card-actions>
         </v-col>
