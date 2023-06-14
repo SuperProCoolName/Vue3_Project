@@ -54,6 +54,7 @@ export default {
               <v-btn append-icon="mdi-vuetify" raised color="primary">
                 Buy
               </v-btn>
+              <buy-ad-modal :ad="ad"></buy-ad-modal>
             </v-card-actions>
           </v-card>
         </v-col>

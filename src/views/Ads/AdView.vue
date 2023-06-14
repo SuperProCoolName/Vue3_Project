@@ -43,6 +43,7 @@ export default {
           <v-card-actions>
             <v-spacer></v-spacer>
             <modal-dialog :ad="ad" v-if="isOwner"></modal-dialog>
+            <buy-ad-modal :ad="ad"></buy-ad-modal>
             <v-btn class="success">Buy</v-btn>
           </v-card-actions>
         </v-card>
