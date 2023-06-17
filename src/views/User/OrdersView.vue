@@ -12,6 +12,9 @@ export default {
       ads() {
         return this.$store.getters.myAds;
       },
+      orders() {
+        return this.$store.getters.orders;
+      },
     },
   },
 };

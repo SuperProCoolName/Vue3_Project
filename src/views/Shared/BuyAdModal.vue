@@ -40,13 +40,13 @@ export default {
 <template>
   <v-dialog v-model="modal" width="400px">
     <template v-slot:activator="{ props }">
-      <v-btn v-bind="props" color="warning">Buy</v-btn></template
+      <v-btn v-bind="props" color="warning">Purchase</v-btn></template
     >
     <v-card class="pa-3">
       <v-row justify="center">
         <v-col cols="12">
           <v-card-title>
-            <h1 class="text--primary">Do you want to buy it?</h1>
+            <h1 class="text--primary">Purchase?</h1>
           </v-card-title>
         </v-col>
       </v-row>
@@ -82,7 +82,7 @@ export default {
               color="success"
               :disabled="localLoading"
               :loading="localLoading"
-              >Buy it!</v-btn
+              >Purchase it!</v-btn
             >
           </v-card-actions>
         </v-col>
