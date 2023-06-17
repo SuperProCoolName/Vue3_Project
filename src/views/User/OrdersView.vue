@@ -1,29 +1,17 @@
 <script>
 export default {
   data() {
-    return {
-      orders: [
-        {
-          id: "123",
-          name: "Kostya",
-          phone: "+7(978)000-00-05",
-          adId: "0",
-          done: true,
-        },
-        {
-          id: "0",
-          name: "Osman",
-          phone: "+7(978)555-35-35",
-          adId: "1",
-          done: false,
-        },
-      ],
-    };
+    return {};
   },
   methods: {
     markDone(order) {
       order.done = !order.done;
       console.log(order.done);
+    },
+    computed: {
+      ads() {
+        return this.$store.getters.myAds;
+      },
     },
   },
 };
@@ -36,11 +24,11 @@ export default {
         <h1 class="text--secondary mb-3 mt-3">Orders</h1>
         <v-list subheader two-line flat>
           <v-list-item v-for="order in orders" :key="order.id">
-            <template v-slot:prepend>
+            <template>
               <v-list-item-action>
                 <v-checkbox
-                  :input-value="order.done"
                   color="primary"
+                  :input-value="order.done"
                   @click="markDone(order)"
                 ></v-checkbox>
               </v-list-item-action>
@@ -49,7 +37,7 @@ export default {
             <v-list-item-subtitle>{{ order.phone }}</v-list-item-subtitle>
             <template v-slot:append>
               <v-list-item-action>
-                <v-btn :to="'/ad/' + order.adId" class="primary">Open</v-btn>
+                <v-btn class="primary" :to="'/ad/' + order.adId">Open</v-btn>
               </v-list-item-action>
             </template>
           </v-list-item>

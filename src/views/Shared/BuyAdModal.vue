@@ -8,6 +8,19 @@ export default {
       phone: "",
     };
   },
+  methods: {
+    onClose() {
+      this.name = "";
+      this.phone = "";
+      this.modal = false;
+    },
+    onSave() {
+      if (this.name !== "" && this.phone !== "") {
+        this.$store.dispatch("createOrder", {});
+        this.modal = false;
+      }
+    },
+  },
 };
 </script>
 
@@ -50,8 +63,8 @@ export default {
         <v-col cols="12">
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn>Close</v-btn>
-            <v-btn color="success">Buy it!</v-btn>
+            <v-btn @click="onClose">Close</v-btn>
+            <v-btn @click="onSave" color="success">Buy it!</v-btn>
           </v-card-actions>
         </v-col>
       </v-row>
